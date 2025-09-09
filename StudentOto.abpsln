@@ -1,0 +1,53 @@
+{
+  "id": "afe46c0c-0256-446b-a084-a9d27d1a844c",
+  "template": "app",
+  "versions": {
+    "AbpFramework": "9.2.1",
+    "AbpStudio": "1.0.2",
+    "TargetDotnetFramework": "net9.0"
+  },
+  "modules": {
+    "StudentOto": {
+      "path": "StudentOto.abpmdl"
+    }
+  },
+  "runProfiles": {
+    "Default": {
+      "path": "etc/abp-studio/run-profiles/Default.abprun.json"
+    }
+  },
+  "options": {
+    "httpRequests": {
+      "ignoredUrls": [
+      
+      ]
+    }
+  },
+  "creatingStudioConfiguration": {
+    "template": "app",
+    "createdAbpStudioVersion": "1.0.2",
+    "tiered": "false",
+    "runInstallLibs": "true",
+    "useLocalReferences": "false",
+    "multiTenancy": "true",
+    "includeTests": "true",
+    "kubernetesConfiguration": "false",
+    "uiFramework": "blazor-server",
+    "mobileFramework": "none",
+    "distributedEventBus": "none",
+    "databaseProvider": "ef",
+    "runDbMigrator": "true",
+    "databaseManagementSystem": "postgresql",
+    "separateTenantSchema": "false",
+    "createInitialMigration": "true",
+    "theme": "leptonx-lite",
+    "themeStyle": "",
+    "themeMenuPlacement": "",
+    "mobileFramework": "none",
+    "publicWebsite": "false",
+    "socialLogin": "true",
+    "selectedLanguages": ["English", "English (United Kingdom)", "简体中文", "Español", "العربية", "हिन्दी", "Português (Brasil)", "Français", "Русский", "Deutsch (Deuthschland)", "Türkçe", "Italiano", "Čeština", "Magyar", "Română (România)", "Svenska", "Suomi", "Slovenčina", "Íslenska", "繁體中文", ],
+    "defaultLanguage": "English",
+    "createCommand": "abp new StudentOto -t app --ui-framework blazor-server --database-provider ef --database-management-system postgresql --theme leptonx-lite --without-cms-kit --dont-run-bundling -no-file-management"
+  }
+}

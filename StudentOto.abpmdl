@@ -1,0 +1,101 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "4.2.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account": {
+      "version": "9.2.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "9.2.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity": {
+      "version": "9.2.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "9.2.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "9.2.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "9.2.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "9.2.1",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "StudentOto.Application": {
+      "path": "src/StudentOto.Application/StudentOto.Application.abppkg",
+      "folder": "src"
+    },
+    "StudentOto.Application.Tests": {
+      "path": "test/StudentOto.Application.Tests/StudentOto.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "StudentOto.Domain.Shared": {
+      "path": "src/StudentOto.Domain.Shared/StudentOto.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "StudentOto.Application.Contracts": {
+      "path": "src/StudentOto.Application.Contracts/StudentOto.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "StudentOto.HttpApi": {
+      "path": "src/StudentOto.HttpApi/StudentOto.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "StudentOto.HttpApi.Client": {
+      "path": "src/StudentOto.HttpApi.Client/StudentOto.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "StudentOto.EntityFrameworkCore.Tests": {
+      "path": "test/StudentOto.EntityFrameworkCore.Tests/StudentOto.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "StudentOto.EntityFrameworkCore": {
+      "path": "src/StudentOto.EntityFrameworkCore/StudentOto.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "StudentOto.TestBase": {
+      "path": "test/StudentOto.TestBase/StudentOto.TestBase.abppkg",
+      "folder": "test"
+    },
+    "StudentOto.Domain.Tests": {
+      "path": "test/StudentOto.Domain.Tests/StudentOto.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "StudentOto.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/StudentOto.HttpApi.Client.ConsoleTestApp/StudentOto.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "StudentOto.DbMigrator": {
+      "path": "src/StudentOto.DbMigrator/StudentOto.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "StudentOto.Blazor": {
+      "path": "src/StudentOto.Blazor/StudentOto.Blazor.abppkg",
+      "folder": "src"
+    },
+    "StudentOto.Domain": {
+      "path": "src/StudentOto.Domain/StudentOto.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}
