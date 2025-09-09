@@ -1,0 +1,89 @@
+﻿@page "/teachers"
+@using StudentOto.Application.Contracts.Dtos
+@using StudentOto.Application.Contracts.Services
+@using StudentOto.Dtos
+@inject ITeacherAppService TeacherAppService
+@inject INotificationService NotificationService
+
+<h3>Öğretmenler</h3>
+
+<button class="btn btn-primary mb-2" @onclick="AddTeacher">Yeni Öğretmen</button>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Adı</th>
+            <th>Email</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var teacher in teachers)
+        {
+            <tr>
+                <td>@teacher.Name</td>
+                <td>@teacher.Email</td>
+                <td>
+                    <button class="btn btn-warning btn-sm" @onclick="() => EditTeacher(teacher)">Düzenle</button>
+                    <button class="btn btn-danger btn-sm" @onclick="() => DeleteTeacher(teacher.Id)">Sil</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (editingTeacher != null)
+{
+    <div class="card mt-3 p-3">
+        <h5>@(editingTeacher.Id == Guid.Empty ? "Yeni Öğretmen Ekle" : "Öğretmen Düzenle")</h5>
+        <div class="mb-2">
+            <label>Adı:</label>
+            <input class="form-control" @bind="editingTeacher.Name" />
+        </div>
+        <div class="mb-2">
+            <label>Email:</label>
+            <input class="form-control" @bind="editingTeacher.Email" />
+        </div>
+        <button class="btn btn-success me-2" @onclick="SaveTeacher">Kaydet</button>
+        <button class="btn btn-secondary" @onclick="CancelEdit">İptal</button>
+    </div>
+}
+
+@code {
+    private List<TeacherDto> teachers = new();
+    private TeacherDto editingTeacher;
+
+    protected override async Task OnInitializedAsync() => await LoadTeachers();
+
+    private async Task LoadTeachers() => teachers = await TeacherAppService.GetListAsync();
+
+    private void AddTeacher() => editingTeacher = new TeacherDto();
+
+    private void EditTeacher(TeacherDto teacher) => editingTeacher = new TeacherDto
+    {
+        Id = teacher.Id,
+        Name = teacher.Name,
+        Email = teacher.Email
+    };
+
+    private void CancelEdit() => editingTeacher = null;
+
+    private async Task SaveTeacher()
+    {
+        if (editingTeacher.Id == Guid.Empty)
+            await TeacherAppService.CreateAsync(editingTeacher);
+        else
+            await TeacherAppService.UpdateAsync(editingTeacher.Id, editingTeacher);
+
+        editingTeacher = null;
+        await LoadTeachers();
+        await NotificationService.Success("İşlem başarıyla tamamlandı!");
+    }
+
+    private async Task DeleteTeacher(Guid id)
+    {
+        await TeacherAppService.DeleteAsync(id);
+        await LoadTeachers();
+        await NotificationService.Success("Öğretmen silindi!");
+    }
+}

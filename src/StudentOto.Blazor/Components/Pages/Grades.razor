@@ -1,0 +1,59 @@
+﻿@page "/grades"
+@using StudentOto.Application.Contracts
+@using StudentOto.Application.Contracts.DTOs
+@using StudentOto.Application.Contracts.Dtos
+@using StudentOto.Application.Contracts.Services
+@using StudentOto.Dtos
+@inject IEnrollmentAppService EnrollmentAppService
+@inject IStudentAppService StudentAppService
+@inject ICourseAppService CourseAppService
+@inject INotificationService NotificationService
+
+<h3>Not ve Devamsızlık Yönetimi</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Öğrenci</th>
+            <th>Ders</th>
+            <th>Not</th>
+            <th>Devamsızlık</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in enrollments)
+        {
+            <tr>
+                <td>@e.StudentName</td>
+                <td>@e.CourseTitle</td>
+                <td><input type="number" class="form-control" style="width:80px" @bind="e.Grade" /></td>
+                <td><input type="number" class="form-control" style="width:80px" @bind="e.Absences" /></td>
+                <td>
+                    <button class="btn btn-success btn-sm" @onclick="() => SaveEnrollment(e)">Kaydet</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<EnrollmentDto> enrollments = new();
+    private List<StudentDto> students = new();
+    private List<CourseDto> courses = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        students = await StudentAppService.GetListAsync();
+        courses = await CourseAppService.GetListAsync();
+        await LoadEnrollments();
+    }
+
+    private async Task LoadEnrollments() => enrollments = await EnrollmentAppService.GetListAsync();
+
+    private async Task SaveEnrollment(EnrollmentDto enrollment)
+    {
+        await EnrollmentAppService.UpdateAsync(enrollment.Id, enrollment);
+        await NotificationService.Success("Kayıt güncellendi!");
+    }
+}

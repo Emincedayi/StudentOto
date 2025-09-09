@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using StudentOto.Domain.Entities;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
@@ -9,9 +10,9 @@ using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
+using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
-using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
@@ -57,6 +58,12 @@ public class StudentOtoDbContext :
 
     #endregion
 
+    public DbSet<Student> Students { get; set; }
+    public DbSet<Teacher> Teachers { get; set; }
+    public DbSet<Course> Courses { get; set; }
+    public DbSet<Enrollment> Enrollments { get; set; }
+
+
     public StudentOtoDbContext(DbContextOptions<StudentOtoDbContext> options)
         : base(options)
     {
@@ -66,6 +73,10 @@ public class StudentOtoDbContext :
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        builder.Entity<Student>(b => b.ToTable("Students"));
+        builder.Entity<Teacher>(b => b.ToTable("Teachers"));
+        builder.Entity<Course>(b => b.ToTable("Courses"));
+        builder.Entity<Enrollment>(b => b.ToTable("Enrollments"));
 
         /* Include modules to your migration db context */
 
